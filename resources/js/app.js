@@ -27,7 +27,12 @@ Vue.use(VueAxios,axios);
 
 const protocol = window.location.protocol;
 const domain = window.location.host;
-axios.defaults.baseURL = `${protocol}//${domain}/api`;
+
+if (domain == 'localhost') {
+  axios.defaults.baseURL = `${protocol}//${domain}/hatos-lecheros/public/api`;
+}else{
+  axios.defaults.baseURL = `${protocol}//${domain}/api`;
+}
 
 // axios.defaults.baseURL = 'http://hatos-lecheros.test/api';
 

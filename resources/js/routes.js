@@ -7,7 +7,93 @@ import VaccinesPage from "./pages/vaccines/VaccinesPage";
 import ExtractionsPage from "./pages/extractions/ExtractionsPage";
 import StadisticsPage from './pages/stadistics/StadisticsPage';
 
-const routes = [
+const domain = window.location.host;
+let routes = null;
+
+if(domain == 'localhost'){
+	 routes = [
+	{
+		path: "/hatos-lecheros/public",
+		redirect: "/login"
+	},
+
+	{
+		path: "/hatos-lecheros/public/login",
+		name: "Login",
+		component: LoginPage,
+		meta: {
+			auth: false
+		}
+	},
+
+	{
+		path: "/hatos-lecheros/public/home",
+		name: "Dashboard",
+		component: HomePage,
+		meta: {
+			auth: true
+		}
+	},
+
+	{
+		path: "/hatos-lecheros/public/users",
+		name: "Users",
+		component: UsersPage,
+		meta: {
+			auth: true
+		}
+	},
+
+	{
+		path: "/hatos-lecheros/public/employees",
+		name: "Employees",
+		component: EmployeesPage,
+		meta: {
+			auth: true
+		}
+	},
+
+	{
+		path: "/hatos-lecheros/public/cows",
+		name: "Cows",
+		component: CowsPage,
+		meta: {
+			auth: true
+		}
+	},
+
+	{
+		path: "/hatos-lecheros/public/vaccines",
+		name: "Vaccines",
+		component: VaccinesPage,
+		meta: {
+			auth: true
+		}
+	},
+
+	{
+		path: "/hatos-lecheros/public/extractions",
+		name: "Extractions",
+		component: ExtractionsPage,
+		meta: {
+			auth: true
+		}
+	},
+
+	{
+		path: "/hatos-lecheros/public/stadistics",
+		name: "Stadistics",
+		component: StadisticsPage,
+		meta: {
+			auth: true
+		}
+	}
+
+
+	];
+
+}else{
+	 routes = [
 	{
 		path: "/",
 		redirect: "/login"
@@ -86,6 +172,8 @@ const routes = [
 	}
 
 
-];
+	];
+}
+
 
 export default routes;

@@ -57,10 +57,19 @@ export default {
 				password: ""
 			},
 
+			domain: window.location.host,
 			image: "/img/icon-vaca.png",
 			background: "/img/ganado-background.jpg"
 		};
 	},
+
+	beforeCreate(){
+		if(this.domain == 'localhost'){
+			this.image = '/hatos-lecheros/public/img/icon-vaca.png';
+			this.background = '/hatos-lecheros/public/img/ganado-background.jpg';
+		}
+	},
+
 	methods: {
 		loginHandler() {
 			var app = this;

@@ -13127,9 +13127,16 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         password: ""
       },
+      domain: window.location.host,
       image: "/img/icon-vaca.png",
       background: "/img/ganado-background.jpg"
     };
+  },
+  beforeCreate: function beforeCreate() {
+    if (this.domain == 'localhost') {
+      this.image = '/hatos-lecheros/public/img/icon-vaca.png';
+      this.background = '/hatos-lecheros/public/img/ganado-background.jpg';
+    }
   },
   methods: {
     loginHandler: function loginHandler() {
@@ -108882,7 +108889,13 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_3___default.a, axios__WEBPACK_IMPORTED_MODULE_2___default.a);
 var protocol = window.location.protocol;
 var domain = window.location.host;
-axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.baseURL = "".concat(protocol, "//").concat(domain, "/api"); // axios.defaults.baseURL = 'http://hatos-lecheros.test/api';
+
+if (domain == 'localhost') {
+  axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.baseURL = "".concat(protocol, "//").concat(domain, "/hatos-lecheros/public/api");
+} else {
+  axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.baseURL = "".concat(protocol, "//").concat(domain, "/api");
+} // axios.defaults.baseURL = 'http://hatos-lecheros.test/api';
+
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: _routes_js__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -110543,66 +110556,133 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var routes = [{
-  path: "/",
-  redirect: "/login"
-}, {
-  path: "/login",
-  name: "Login",
-  component: _pages_auth_LoginPage_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-  meta: {
-    auth: false
-  }
-}, {
-  path: "/home",
-  name: "Dashboard",
-  component: _pages_HomePage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-  meta: {
-    auth: true
-  }
-}, {
-  path: "/users",
-  name: "Users",
-  component: _pages_users_UsersPage__WEBPACK_IMPORTED_MODULE_2__["default"],
-  meta: {
-    auth: true
-  }
-}, {
-  path: "/employees",
-  name: "Employees",
-  component: _pages_employees_EmployeesPage__WEBPACK_IMPORTED_MODULE_3__["default"],
-  meta: {
-    auth: true
-  }
-}, {
-  path: "/cows",
-  name: "Cows",
-  component: _pages_cows_CowsPage__WEBPACK_IMPORTED_MODULE_4__["default"],
-  meta: {
-    auth: true
-  }
-}, {
-  path: "/vaccines",
-  name: "Vaccines",
-  component: _pages_vaccines_VaccinesPage__WEBPACK_IMPORTED_MODULE_5__["default"],
-  meta: {
-    auth: true
-  }
-}, {
-  path: "/extractions",
-  name: "Extractions",
-  component: _pages_extractions_ExtractionsPage__WEBPACK_IMPORTED_MODULE_6__["default"],
-  meta: {
-    auth: true
-  }
-}, {
-  path: "/stadistics",
-  name: "Stadistics",
-  component: _pages_stadistics_StadisticsPage__WEBPACK_IMPORTED_MODULE_7__["default"],
-  meta: {
-    auth: true
-  }
-}];
+var domain = window.location.host;
+var routes = null;
+
+if (domain == 'localhost') {
+  routes = [{
+    path: "/hatos-lecheros/public",
+    redirect: "/login"
+  }, {
+    path: "/hatos-lecheros/public/login",
+    name: "Login",
+    component: _pages_auth_LoginPage_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    meta: {
+      auth: false
+    }
+  }, {
+    path: "/hatos-lecheros/public/home",
+    name: "Dashboard",
+    component: _pages_HomePage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/hatos-lecheros/public/users",
+    name: "Users",
+    component: _pages_users_UsersPage__WEBPACK_IMPORTED_MODULE_2__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/hatos-lecheros/public/employees",
+    name: "Employees",
+    component: _pages_employees_EmployeesPage__WEBPACK_IMPORTED_MODULE_3__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/hatos-lecheros/public/cows",
+    name: "Cows",
+    component: _pages_cows_CowsPage__WEBPACK_IMPORTED_MODULE_4__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/hatos-lecheros/public/vaccines",
+    name: "Vaccines",
+    component: _pages_vaccines_VaccinesPage__WEBPACK_IMPORTED_MODULE_5__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/hatos-lecheros/public/extractions",
+    name: "Extractions",
+    component: _pages_extractions_ExtractionsPage__WEBPACK_IMPORTED_MODULE_6__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/hatos-lecheros/public/stadistics",
+    name: "Stadistics",
+    component: _pages_stadistics_StadisticsPage__WEBPACK_IMPORTED_MODULE_7__["default"],
+    meta: {
+      auth: true
+    }
+  }];
+} else {
+  routes = [{
+    path: "/",
+    redirect: "/login"
+  }, {
+    path: "/login",
+    name: "Login",
+    component: _pages_auth_LoginPage_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    meta: {
+      auth: false
+    }
+  }, {
+    path: "/home",
+    name: "Dashboard",
+    component: _pages_HomePage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/users",
+    name: "Users",
+    component: _pages_users_UsersPage__WEBPACK_IMPORTED_MODULE_2__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/employees",
+    name: "Employees",
+    component: _pages_employees_EmployeesPage__WEBPACK_IMPORTED_MODULE_3__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/cows",
+    name: "Cows",
+    component: _pages_cows_CowsPage__WEBPACK_IMPORTED_MODULE_4__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/vaccines",
+    name: "Vaccines",
+    component: _pages_vaccines_VaccinesPage__WEBPACK_IMPORTED_MODULE_5__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/extractions",
+    name: "Extractions",
+    component: _pages_extractions_ExtractionsPage__WEBPACK_IMPORTED_MODULE_6__["default"],
+    meta: {
+      auth: true
+    }
+  }, {
+    path: "/stadistics",
+    name: "Stadistics",
+    component: _pages_stadistics_StadisticsPage__WEBPACK_IMPORTED_MODULE_7__["default"],
+    meta: {
+      auth: true
+    }
+  }];
+}
+
 /* harmony default export */ __webpack_exports__["default"] = (routes);
 
 /***/ }),
